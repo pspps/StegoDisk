@@ -1,0 +1,17 @@
+#!/bin/bash
+(
+	if ! test -e ffbin;
+	then
+		mkdir -p ffbuild;
+		cd ffbuild;
+		../lib/ffmpeg/configure --enable-shared --disable-programs --prefix=$(pwd)/../ffbin --enable-debug=gdb --disable-stripping --disable-static --disable-optimizations --disable-mmx
+		time make -j8;
+		make install;
+	fi
+)
+
+g++ -std=c++14  src/main.cc src/carrier_files/carrier_file_ffmpeg.cc  -Iffbin/include/ -Lffbin/lib/ -lavcodec -lswscale -lavformat -lavutil -Isrc/ -g -o main
+echo "------------------------------"
+echo "Pustam aplikaciu"
+echo "------------------------------"
+LD_LIBRARY_PATH=ffbin/lib/ ./main

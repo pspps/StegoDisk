@@ -7,3 +7,10 @@
 [submodule "lib/lodepng"]
 	path = lib/lodepng
 	url = https://github.com/lvandeve/lodepng.git
+[submodule "lib/ffmpeg"]
+	path = lib/ffmpeg
+	url = https://git.ffmpeg.org/ffmpeg.git
+[submodule "ffmpeg"]
+	path = lib/ffmpeg
+	url = https://git.ffmpeg.org/ffmpeg.git
+	branch = release/3.4
